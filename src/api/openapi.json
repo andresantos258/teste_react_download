@@ -1,0 +1,374 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "Simple Crud Api For Case Studies",
+        "description": "\n## Endpoints are protected by Basic Authentication\n\n\n\n###  Credentials    \n* **Username:** demo\n* **Password:** demo\n\n[Figma file link](/static/Crud-Operations.fig)\n\n#   \n> **If you prefer _ReDoc:_** [Redoc Documentation](/redoc)\n",
+        "version": "0.1.0"
+    },
+    "paths": {
+        "/users": {
+            "get": {
+                "tags": [
+                    "Simple Crud"
+                ],
+                "summary": "List Users",
+                "operationId": "list_users_users_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "title": "Response List Users Users Get",
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/UserResponseModel"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "HTTPBasic": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Simple Crud"
+                ],
+                "summary": "Create User",
+                "operationId": "create_user_users_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserModel"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserResponseModel"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "HTTPBasic": []
+                    }
+                ]
+            }
+        },
+        "/users/{user_key}": {
+            "get": {
+                "tags": [
+                    "Simple Crud"
+                ],
+                "summary": "Get User",
+                "operationId": "get_user_users__user_key__get",
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "User Key",
+                            "type": "string"
+                        },
+                        "name": "user_key",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserResponseModel"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "HTTPBasic": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Simple Crud"
+                ],
+                "summary": "Delete User",
+                "operationId": "delete_user_users__user_key__delete",
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "User Key",
+                            "type": "string"
+                        },
+                        "name": "user_key",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DeleteUserResponseModel"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "HTTPBasic": []
+                    }
+                ]
+            },
+            "patch": {
+                "tags": [
+                    "Simple Crud"
+                ],
+                "summary": "Update User",
+                "operationId": "update_user_users__user_key__patch",
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "User Key",
+                            "type": "string"
+                        },
+                        "name": "user_key",
+                        "in": "path"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserUpdateModel"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserResponseModel"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "HTTPBasic": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "DeleteUserResponseModel": {
+                "title": "DeleteUserResponseModel",
+                "required": [
+                    "is_successful"
+                ],
+                "type": "object",
+                "properties": {
+                    "is_successful": {
+                        "title": "Is Successful",
+                        "type": "boolean"
+                    }
+                }
+            },
+            "HTTPValidationError": {
+                "title": "HTTPValidationError",
+                "type": "object",
+                "properties": {
+                    "detail": {
+                        "title": "Detail",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        }
+                    }
+                }
+            },
+            "UserModel": {
+                "title": "UserModel",
+                "required": [
+                    "name",
+                    "age",
+                    "hometown"
+                ],
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "title": "Name",
+                        "type": "string"
+                    },
+                    "age": {
+                        "title": "Age",
+                        "type": "integer"
+                    },
+                    "hometown": {
+                        "title": "Hometown",
+                        "type": "string"
+                    }
+                }
+            },
+            "UserResponseModel": {
+                "title": "UserResponseModel",
+                "required": [
+                    "key",
+                    "name",
+                    "age",
+                    "hometown"
+                ],
+                "type": "object",
+                "properties": {
+                    "key": {
+                        "title": "Key",
+                        "type": "string"
+                    },
+                    "name": {
+                        "title": "Name",
+                        "type": "string"
+                    },
+                    "age": {
+                        "title": "Age",
+                        "type": "integer"
+                    },
+                    "hometown": {
+                        "title": "Hometown",
+                        "type": "string"
+                    }
+                }
+            },
+            "UserUpdateModel": {
+                "title": "UserUpdateModel",
+                "required": [
+                    "name",
+                    "age",
+                    "hometown"
+                ],
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "title": "Name",
+                        "type": "string"
+                    },
+                    "age": {
+                        "title": "Age",
+                        "type": "integer"
+                    },
+                    "hometown": {
+                        "title": "Hometown",
+                        "type": "string"
+                    }
+                }
+            },
+            "ValidationError": {
+                "title": "ValidationError",
+                "required": [
+                    "loc",
+                    "msg",
+                    "type"
+                ],
+                "type": "object",
+                "properties": {
+                    "loc": {
+                        "title": "Location",
+                        "type": "array",
+                        "items": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "integer"
+                                }
+                            ]
+                        }
+                    },
+                    "msg": {
+                        "title": "Message",
+                        "type": "string"
+                    },
+                    "type": {
+                        "title": "Error Type",
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "HTTPBasic": {
+                "type": "http",
+                "scheme": "basic"
+            }
+        }
+    }
+}
